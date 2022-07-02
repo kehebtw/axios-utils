@@ -1,0 +1,22 @@
+{
+  "name": "axios-utils",
+  "version": "1.0.0",
+  "repository": "git@github.com:kehebtw/axios-utils.git",
+  "author": "Daniel Farias <daniel.dsfarias@gmail.com>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "/src"
+  ],
+  "scripts": {
+    "test": "npx jest .",
+    "build": "npx tsc --declaration"
+  },
+  "devDependencies": {
+    "jest": "^27.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
