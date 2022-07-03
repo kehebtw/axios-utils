@@ -5,15 +5,20 @@ const defaultHeaders = {'Content-Type': 'application/json'}
 
 // Add a response interceptor
 function successInterceptor(response) {
-    return response
+    return {
+        ok: true,
+        status: response.status,
+        extras: response.headers,
+        data: response.data
+    }
 }
 
 function errorInterceptor(error) {
     return Promise.resolve({
-        ...error.response,
         ok: false,
-        error: error.message.toString(),
         status: error.response.status || -1,
+        extras: error.response.headers,
+        error: error.message.toString()
     })
 }
 
@@ -21,15 +26,7 @@ function getAxiosClient(baseURL, headers = {}, timeout = defaultTimeout){
     let instance = axios.create({
         baseURL, 
         timeout, 
-        headers: { ...defaultHeaders, ...headers },
-        transformResponse: [function (data) {
-            return {
-                ok: true,
-                status: data.status,
-                data: data.data,
-                extras: data.headers
-            }
-        }],
+        headers: { ...defaultHeaders, ...headers }
     })
     instance.interceptors.response.use(successInterceptor, errorInterceptor)
     return instance
