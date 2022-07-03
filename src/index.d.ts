@@ -1,7 +1,6 @@
 import { AxiosInstance } from "axios";
 
 declare module 'axios-utils' {
-    // define the types...
     const defaultTimeout: number;
     const defaultHeaders: any;
 
@@ -12,5 +11,5 @@ declare module 'axios-utils' {
         data?: any
         error?: string
     }
-    function getAxiosClient(baseURL: string, headers: any = {}, timeout: number = defaultTimeout): AxiosInstance
+    function getAxiosClient(baseURL: string, headers: any, timeout: number): AxiosInstance
 }
