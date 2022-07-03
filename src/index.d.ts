@@ -11,5 +11,6 @@ declare module 'axios-utils' {
         data?: any
         error?: string
     }
+    
     function getAxiosClient(baseURL: string, headers: any, timeout: number): AxiosInstance
 }

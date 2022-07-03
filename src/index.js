@@ -1,6 +1,6 @@
 const axios = require("axios")
 
-const defaultTimeout = 999999 * 1000
+const defaultTimeout = 9999 * 1000
 const defaultHeaders = {'Content-Type': 'application/json'}
 
 // Add a response interceptor
@@ -16,9 +16,9 @@ function successInterceptor(response) {
 function errorInterceptor(error) {
     return Promise.resolve({
         ok: false,
-        status: response.status || 0,
-        error: error.toString(),
-        extras: response.headers
+        status: error.response.status || -1,
+        error: error.message.toString(),
+        extras: error.response.headers
     })
 }
 
